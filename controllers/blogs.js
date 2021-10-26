@@ -11,8 +11,6 @@ blogsRouter.get('/', (request, response) => {
   
 blogsRouter.post('/', (request, response) => {
     const blog = Blog(request.body)
-    console.log(blog)
-    console.log(request.body)
   
     blog
       .save()
