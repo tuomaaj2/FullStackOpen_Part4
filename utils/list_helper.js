@@ -20,9 +20,52 @@ const favoriteBlog = (blogs) => {
   return obj
 }
 
+const mostBlogs = (blogs) => {
+  let obj = {}
+  let ret_obj = {}
+  for (let i in blogs) {
+    if (!obj[blogs[i].author]) obj[blogs[i].author] = 1
+    else obj[blogs[i].author] += 1
+  }
+  if (Object.keys(obj).length === 0) return {}
+  max_name = 0
+  max_value = 0
+  for (let j in obj) {
+    if (obj[j] > max_value) {
+      max_name = j
+      max_value = obj[j]
+    }
+  }
+  ret_obj.author = max_name
+  ret_obj.blogs = max_value
+  return ret_obj
+}
+
+const mostLikes = (blogs) => {
+  let obj = {}
+  let ret_obj = {}
+  for (let i in blogs) {
+    if (!obj[blogs[i].author]) obj[blogs[i].author] = blogs[i].likes
+    else obj[blogs[i].author] += blogs[i].likes
+  }
+  if (Object.keys(obj).length === 0) return {}
+  max_name = 0
+  max_value = 0
+  for (let j in obj) {
+    if (obj[j] > max_value) {
+      max_name = j
+      max_value = obj[j]
+    }
+  }
+  ret_obj.author = max_name
+  ret_obj.likes = max_value
+  return ret_obj
+}
 
 module.exports = {
     dummy,
     totalLikes,
-    favoriteBlog
+    favoriteBlog,
+    mostBlogs,
+    mostLikes
 }
